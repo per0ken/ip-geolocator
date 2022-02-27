@@ -6,13 +6,19 @@
     <artifactId>ip-geolocator</artifactId>
     <version>1.0</version>
     <description>Java class library for obtaining geolocation information of an IP address.</description>
+<distributionManagement>
+  <site>
+    <id>shrek</id>
+    <url>scp://per0ken@shrek.unideb.hu:2222/home/per0ken/public_html/${project.artifactId}</url>
+  </site>
+</distributionManagement>
     <developers>
         <developer>
             <id>peter</id>
             <name>Péter Lukács</name>
             <email>peter.lukacs16@gmail.com</email>
             <organization>Faculty of Informatics, University of Debrecen</organization>
-            <organizationUrl>http://www.inf.unideb.hu/</organizationUrl>
+            <organizationUrl>https://www.inf.unideb.hu/</organizationUrl>
         </developer>
     </developers>
     <properties>
@@ -38,7 +44,39 @@
 
     </dependencies>
     <build>
-        <plugins>
+      <plugins>
+	<plugin>
+ 	 <groupId>org.apache.maven.plugins</groupId>
+  	 <artifactId>maven-site-plugin</artifactId>
+  	 <version>3.11.0</version>
+  	 <dependencies>
+    	    <dependency>
+      	    <groupId>org.apache.maven.wagon</groupId>
+            <artifactId>wagon-ssh</artifactId>
+            <version>3.5.1</version>
+    	    </dependency>
+  	 </dependencies>
+      </plugin>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-dependency-plugin</artifactId>
+              <version>3.2.0</version>
+          </plugin>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-pmd-plugin</artifactId>
+              <version>3.16.0</version>
+          </plugin>
+          <plugin>
+              <groupId>com.github.spotbugs</groupId>
+              <artifactId>spotbugs-maven-plugin</artifactId>
+              <version>4.5.3.0</version>
+          </plugin>
+          <plugin>
+              <groupId>org.codehaus.mojo</groupId>
+              <artifactId>versions-maven-plugin</artifactId>
+              <version>2.9.0</version>
+          </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -104,6 +142,7 @@
                 <artifactId>maven-jxr-plugin</artifactId>
                 <version>3.1.1</version>
             </plugin>
+
         </plugins>
     </reporting>
 </project>
